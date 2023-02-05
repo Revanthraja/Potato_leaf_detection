@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Potato Disease Classification</title>
+
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <br><br>
+    <h1 style="color:white;">Potato Disease Classification</h1>
+    <br><hr><br>
+    <h4 style="color:white;">Developed By: Revanthraja M</h4>
+    <a href="http://tony2.lovestoblog.com/">Website</a>
+    <a href="https://www.linkedin.com/in/revanthraja-m-00022a233">LinkedIn</a>
+    <a href="https://github.com/Revanthraja">GitHub</a>
+    <br><br><hr><br>
+    <form class="p-3 text-center", action="", method="post", enctype="multipart/form-data">
+        <input class="form-control", type="file", name="imagefile">
+        <input class="btn btn-primary mt-3", type="submit", value="Predict Disease">
+    </form>
+    {% if prediction %}
+    <h3 style="color:white;"class="text-center"> {{prediction}} </h3>
+    {% endif %}
+
+    {% if prescription %}
+    <h3 style="color:white;"class="text-center"> {{prescription}} </h3>
+    {% endif %}
+
+    {% if nofile %}
+    <h3 style="color: red;" class="text-center"> No Image Selected!</h3>
+    {% endif %}
+
+    {% if notimage %}
+    <h3 style="color: red;" class="text-center"> Choose Only PNG and JPEG files! </h3>
+    {% endif %}
+
+    {% if image %}
+    <img src="{{ image }}"  alt="Image" style="display:block; margin-left:auto; margin-right:auto; width:70%">
+    {% endif %}
+
+    <hr>
+    <h4 style="color:white;">Examples</h4>
+    <div class="row">
+        <div class="card col-md-4">
+            <h5 class="card-title">Healthy</h5>
+            <img src="{{ url_for('static', filename='static_images/healthy.JPG') }}" alt="Image">
+        </div>
+        <div class="card col-md-4">
+            <h5 class="card-title">Early Blight</h5>
+            <img src="{{ url_for('static', filename='static_images/early_blight.JPG') }}" alt="Image">
+        </div>
+        <div class="card col-md-4">
+            <h5 class="card-title">Late Blight</h5>
+            <img src="{{ url_for('static', filename='static_images/late_blight.JPG') }}" alt="Image">
+        </div>
+    </div>
+    <hr>
+</div>
+
+{% endblock %}
